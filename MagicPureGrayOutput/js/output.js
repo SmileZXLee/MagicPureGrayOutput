@@ -6,8 +6,15 @@ var vm = new Vue({
 		modeClass: 'mode-change-empty',
 		modeText: '黑',
 		mainBacColor: 'white',
-		currentInputImage: null
+		currentInputImage: null,
+		saveBtnText: '点击下载/右键图片保存'
 	},	
+	mounted () {
+	  var isMobile = this.isMobile();
+	  if(isMobile){
+		  this.saveBtnText = '长按上方图片保存';
+	  }
+	},
 	methods:{
 		inputChange(e){
 			this.progressValue = '0%';
@@ -100,6 +107,15 @@ var vm = new Vue({
 			if(this.currentInputImage){
 				this.handleOutput(this.currentInputImage);
 			}
+		},
+		isMobile(){
+			return navigator.userAgent.match(/Android/i)
+				|| navigator.userAgent.match(/webOS/i)
+				|| navigator.userAgent.match(/iPhone/i)
+				|| navigator.userAgent.match(/iPad/i)
+				|| navigator.userAgent.match(/iPod/i)
+				|| navigator.userAgent.match(/BlackBerry/i)
+				|| navigator.userAgent.match(/Windows Phone/i);
 		}
 	}		
 });
