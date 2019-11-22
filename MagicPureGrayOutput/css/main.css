@@ -1,0 +1,101 @@
+body,html{
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+.main{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.progress{
+	width: 100%;
+	height: 3px;
+	z-index: 1;
+}
+.progress-value{
+	height: 100%;
+	background-color: skyblue;
+}
+
+.mode-change-empty{
+	position: fixed;
+	right: 20px;
+	top: 80px;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	font-size: 15px;
+	border: #FCB12A solid 1px;
+	color: #FCB12A;
+	
+}
+
+.mode-change-full{
+	position: fixed;
+	right: 20px;
+	top: 80px;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	font-size: 15px;
+	background: #FCB12A;
+	color: white;
+}
+
+.select-input{
+	position: fixed;
+	width: 100%;
+	color: white;
+	background-color: #FCB12A;
+	height: 60px;
+	text-align: center;
+	top: 0px;
+	line-height: 60px;
+}
+input{
+	width: 100%;
+	height: 60px;
+	opacity: 0;
+	position: fixed;
+}
+
+.canvas-container{
+	margin-top: 60px;
+	display: none;
+}
+
+.save-btn{
+	position: fixed;
+	width: 100%;
+	color: white;
+	background-color: #FCB12A;
+	height: 60px;
+	text-align: center;
+	bottom: 0px;
+	line-height: 60px;
+}
+
+#show-container-id{
+	margin-top: 50px;
+	background-repeat: no-repeat;
+	max-height: calc(100% - 110px);
+	max-width: 100%;
+}
+
+.copyright-container{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+}
