@@ -1,7 +1,14 @@
+<!--
+/**
+ * MagicPureGrayOutput
+ * @author ZXLee
+ * @github https://github.com/SmileZXLee/MagicPureGrayOutput
+ *-->
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 		<title>MagicPureGrayOutput</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
 	</head>
@@ -18,8 +25,8 @@
 			<div class="copyright-container">
 				<img src="" alt="" id="show-container-id" v-if="showContainer">
 				<div class="copyright" v-if="showCopyright">
-					<div style="font-weight: 200;color: #FCB12A;font-size: 50px;text-align: center;">MagicPureGrayOutput</div>
-					<div style="font-weight: 200;color: #FCB12A;font-size: 30px;text-align: center;" @click="toGithub">Visit Github</div>
+					<div style="font-weight: 200;color: #FCB12A;font-size: 2.125rem;text-align: center;">MagicPureGrayOutput</div>
+					<div style="font-weight: 200;color: #FCB12A;font-size: 1rem;text-align: center;" @click="toGithub">Visit Github</div>
 				</div>
 			</div>
 			<div :class="modeClass" @click="changeModeClick">{{modeText}}</div>

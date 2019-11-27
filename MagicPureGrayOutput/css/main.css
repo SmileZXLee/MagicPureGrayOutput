@@ -1,3 +1,9 @@
+/**
+ * MagicPureGrayOutput
+ * @author ZXLee
+ * @github https://github.com/SmileZXLee/MagicPureGrayOutput
+ */
+
 body,html{
 	width: 100%;
 	height: 100%;
@@ -61,7 +67,7 @@ body,html{
 .composeClass{
 	position: fixed;
 	right: 20px;
-	top: 160px;
+	top: 140px;
 	border-radius: 50%;
 	width: 50px;
 	height: 50px;
@@ -69,7 +75,6 @@ body,html{
 	line-height: 50px;
 	font-size: 15px;
 	background: deepskyblue;
-	
 	color: white;
 }
 
@@ -82,6 +87,7 @@ body,html{
 	text-align: center;
 	top: 0px;
 	line-height: 60px;
+	font-size: 0.9375rem;
 }
 input{
 	width: 100%;
@@ -104,6 +110,7 @@ input{
 	text-align: center;
 	bottom: 0px;
 	line-height: 60px;
+	font-size: 0.9375rem;
 }
 
 #show-container-id{
@@ -121,4 +128,35 @@ input{
 	flex-direction: column;
 	align-content: center;
 	justify-content: center;
+}
+
+@media only screen and (min-width: 320px) {
+	html,body {
+		font-size: 55.556% !important;
+	}
+}
+@media only screen and (min-width: 360px) {
+	html,body {
+		font-size: 62.5% !important;
+	}
+}
+@media only screen and (min-width: 375px) {
+	html,body {
+		font-size: 65.1041% !important;
+	}
+}
+@media only screen and (min-width: 414px) {
+	html,body {
+		font-size: 71.875% !important;
+	}
+}
+@media only screen and (min-width: 768px) {
+	html,body {
+		font-size: 133.3333% !important;
+	}
+}
+@media only screen and (min-width: 1024px) {
+	html,body {
+		font-size: 177.77778% !important;
+	}
 }
