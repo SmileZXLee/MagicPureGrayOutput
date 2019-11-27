@@ -58,6 +58,21 @@ body,html{
 	color: white;
 }
 
+.composeClass{
+	position: fixed;
+	right: 20px;
+	top: 160px;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	font-size: 15px;
+	background: deepskyblue;
+	
+	color: white;
+}
+
 .select-input{
 	position: fixed;
 	width: 100%;
@@ -96,6 +111,7 @@ input{
 	background-repeat: no-repeat;
 	max-height: calc(100% - 110px);
 	max-width: 100%;
+	margin: auto;
 }
 
 .copyright-container{

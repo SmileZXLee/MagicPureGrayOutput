@@ -1,13 +1,24 @@
+/**
+ * MagicPureGrayOutput
+ * @author ZXLee
+ * @github https://github.com/SmileZXLee/MagicPureGrayOutput
+ */
+
 var vm = new Vue({
 	el: '.main',
 	data: {
 		progressValue: '0%',
+		currentProgress: 0,
 		showCopyright: true,
+		showContainer: false,
 		modeClass: 'mode-change-empty',
 		modeText: '黑',
 		mainBacColor: 'white',
 		currentInputImage: null,
-		saveBtnText: '点击下载/右键图片保存'
+		saveBtnText: '点击下载/右键图片保存',
+		currentBlackImage: null,
+		currentWhiteImage: null,
+		downCanvas: null
 	},	
 	mounted () {
 	  var isMobile = this.isMobile();
@@ -15,15 +26,19 @@ var vm = new Vue({
 		  this.saveBtnText = '长按上方图片保存';
 	  }
 	},
+	watch:{
+		showCopyright(val){
+			this.showContainer = !this.showCopyright;
+		}
+	},
 	methods:{
 		inputChange(e){
 			this.progressValue = '0%';
 			this.showCopyright = false;
 			var $this = this;
-			var currentProgress = 0;
 			var timer = setInterval(function(){
-				$this.progressValue = currentProgress + '%';
-				if(currentProgress > 99){
+				$this.progressValue = $this.currentProgress + '%';
+				if($this.currentProgress > 99){
 					clearInterval(timer);
 					setTimeout(function(){
 						$this.progressValue = '0%';
@@ -50,7 +65,7 @@ var vm = new Vue({
 				var img_height = this.height; 
 				canvas.width = img_width; 
 				canvas.height = img_height; 
-				context.drawImage(this, 0, 0, img_width, img_height); 
+				context.drawImage(this, 0, 0, img_width, img_height);
 				$this.showInImgContainer(canvas);
 				setTimeout(function(){
 					var imageData = context.getImageData(0, 0, img_width, img_height);
@@ -60,18 +75,26 @@ var vm = new Vue({
 							imageData.data[i] = 255;
 							imageData.data[i+1] = 255;
 							imageData.data[i+2] = 255;
-							imageData.data[i+3] = gray;
+							imageData.data[i+3] = imageData.data[i+3] == 0 ? 0 : gray;
 						}else{
 							imageData.data[i] = 0;
 							imageData.data[i+1] = 0;
 							imageData.data[i+2] = 0;
-							imageData.data[i+3] = 255 - gray;
+							imageData.data[i+3] = imageData.data[i+3] == 0 ? 0 : 255 - gray;
 						}
 						
-						currentProgress = (i / (imageData.data.length * 1.0) * 100);
+						$this.currentProgress = (i / (imageData.data.length * 1.0) * 100);
 					}
 					context.putImageData(imageData,0,0);
 					$this.showInImgContainer(canvas);
+					var currentImage = new Image();
+					currentImage.src = canvas.toDataURL("image/png");
+					if($this.modeClass == 'mode-change-empty'){
+						$this.currentBlackImage = currentImage;
+					}else{
+						$this.currentWhiteImage =currentImage;
+					}
+					$this.downCanvas = canvas;
 				},10)
 				
 				}
@@ -82,7 +105,11 @@ var vm = new Vue({
 				alert('请先选取需要处理的图片');
 				return;
 			}
-			var canvas = document.getElementById("main-canvas");
+			if(this.isMobile()){
+				alert('长按上方图片保存至相册');
+				return;
+			}
+			var canvas = this.downCanvas;
 			var imgURL = canvas.toDataURL("image/png");
 			var downloadLink = document.createElement('a');
 			downloadLink.download = 'MagicPureGrayOutput-' + (new Date()).getTime();
@@ -100,13 +127,33 @@ var vm = new Vue({
 		toGithub(){
 			window.open('https://github.com/SmileZXLee/MagicPureGrayOutput');
 		},
-		changeMode(){
+		changeModeClick(){
 			this.modeClass = this.modeClass == 'mode-change-empty' ? 'mode-change-full' : 'mode-change-empty';
 			this.modeText = this.modeText == '黑' ? '白' : '黑';
 			this.mainBacColor = this.mainBacColor == 'white' ? 'black' : 'white';
 			if(this.currentInputImage){
 				this.handleOutput(this.currentInputImage);
 			}
+		},
+		composeClick(){
+			if(!this.currentBlackImage){
+				alert('您未选择转换为纯黑色像素的图片');
+				return;
+			}
+			if(!this.currentWhiteImage){
+				alert('您未选择转换为纯白色像素的图片');
+				return;
+			}
+			var canvas = document.createElement('canvas');
+			var context = canvas.getContext('2d'); 
+			canvas.width = this.currentBlackImage.width;
+			canvas.height = this.currentBlackImage.height;
+			context.drawImage(this.currentBlackImage, 0, 0, this.currentBlackImage.width, this.currentBlackImage.height);
+			context.globalAlpha = 0.2;
+			context.drawImage(this.currentWhiteImage, 0, 0, this.currentBlackImage.width, this.currentBlackImage.height);
+			this.showInImgContainer(canvas);
+			this.downCanvas = canvas;
+			this.mainBacColor = 'yellowgreen';
 		},
 		isMobile(){
 			return navigator.userAgent.match(/Android/i)

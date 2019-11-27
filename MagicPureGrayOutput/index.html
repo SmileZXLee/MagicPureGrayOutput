@@ -16,13 +16,14 @@
 				<canvas id="main-canvas"></canvas>
 			</div>
 			<div class="copyright-container">
-				<img src="" alt="" id="show-container-id">
-				<div class="copyright" @click="toGithub" v-if="showCopyright">
+				<img src="" alt="" id="show-container-id" v-if="showContainer">
+				<div class="copyright" v-if="showCopyright">
 					<div style="font-weight: 200;color: #FCB12A;font-size: 50px;text-align: center;">MagicPureGrayOutput</div>
-					<div style="font-weight: 200;color: #FCB12A;font-size: 30px;text-align: center;">Visit Github</div>
+					<div style="font-weight: 200;color: #FCB12A;font-size: 30px;text-align: center;" @click="toGithub">Visit Github</div>
 				</div>
 			</div>
-			<div :class="modeClass" @click="changeMode">{{modeText}}</div>
+			<div :class="modeClass" @click="changeModeClick">{{modeText}}</div>
+			<div class="composeClass" @click="composeClick">合成</div>
 			<div class="save-btn" @click="saveClick">{{saveBtnText}}</div>
 		</div>
 	</body>
