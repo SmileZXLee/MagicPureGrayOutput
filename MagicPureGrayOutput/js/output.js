@@ -23,7 +23,7 @@ var vm = new Vue({
 	mounted () {
 	  var isMobile = this.isMobile();
 	  if(isMobile){
-		  this.saveBtnText = '长按上方图片保存';
+		  this.saveBtnText = '点击下载/长按图片保存';
 	  }
 	},
 	watch:{
@@ -105,10 +105,10 @@ var vm = new Vue({
 				alert('请先选取需要处理的图片');
 				return;
 			}
-			if(this.isMobile()){
-				alert('长按上方图片保存至相册');
-				return;
-			}
+			// if(this.isMobile()){
+			// 	alert('长按上方图片保存至相册');
+			// 	return;
+			// }
 			var canvas = this.downCanvas;
 			var imgURL = canvas.toDataURL("image/png");
 			var downloadLink = document.createElement('a');
