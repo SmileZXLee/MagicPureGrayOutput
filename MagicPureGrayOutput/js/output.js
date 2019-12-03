@@ -149,7 +149,7 @@ var vm = new Vue({
 			canvas.width = this.currentBlackImage.width;
 			canvas.height = this.currentBlackImage.height;
 			context.drawImage(this.currentBlackImage, 0, 0, this.currentBlackImage.width, this.currentBlackImage.height);
-			context.globalAlpha = 0.2;
+			context.globalAlpha = 0.14;
 			context.drawImage(this.currentWhiteImage, 0, 0, this.currentBlackImage.width, this.currentBlackImage.height);
 			this.showInImgContainer(canvas);
 			this.downCanvas = canvas;
